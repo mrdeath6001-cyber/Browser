@@ -16,6 +16,7 @@ jobs:
           gradle-version: 8.7
       - run: unzip browser.zip -d proj
       - run: cd proj && gradle assembleDebug --no-daemon
-      - env:
+      - name: Release
+        env:
           GH_TOKEN: ${{ github.token }}
-run: gh release create v${{ github.run_number }} proj/app/build/outputs/apk/debug/app-debug.apk --title Browser --notes Debug        
+        run: gh release create v${{ github.run_number }} proj/app/build/outputs/apk/debug/app-debug.apk --title Browser --notes Debug
